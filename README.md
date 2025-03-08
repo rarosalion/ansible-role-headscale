@@ -1,5 +1,5 @@
 # Ansible Role: Headscale
-![CI](https://github.com/hampusstrom/ansible-role-headscale/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/rarosalion/ansible-role-headscale/actions/workflows/ci.yml/badge.svg)
 
 An ansible role to install and configure Headscale, An open source, self-hosted implementation of the Tailscale control server.
 
@@ -24,17 +24,17 @@ This role has been tested on the following platforms:
 ## Installation
 ### ansible-galaxy
 ```
-ansible-galaxy install hampusstrom.headscale
+ansible-galaxy install rarosalion.headscale
 ```
 
 ### Manual Installation
 Current user only:
 ```
-git clone https://github.com/hampusstrom/ansible-role-headscale.git ~/.ansible/roles/hampusstrom.headscale
+git clone https://github.com/rarosalion/ansible-role-headscale.git ~/.ansible/roles/rarosalion.headscale
 ```
 System wide:
 ```
-git clone https://github.com/hampusstrom/ansible-role-headscale.git /etc/ansible/roles/hampusstrom.headscale
+git clone https://github.com/rarosalion/ansible-role-headscale.git /etc/ansible/roles/rarosalion.headscale
 ```
 
 ## Requirements
@@ -66,13 +66,13 @@ Since we require root, use this role in a playbook that has `become:yes` globall
 - hosts: headscale
   become: yes
   roles:
-    - role: hampusstrom.headscale
+    - role: rarosalion.headscale
 
 # OR
 
 - hosts: headscale
   roles:
-    - role: hampusstrom.headscale
+    - role: rarosalion.headscale
       become: yes
 ```
 
@@ -538,7 +538,7 @@ I highly recommend copying [The official config example](https://github.com/juan
     randomize_client_port: false
 
   roles:
-    - hampusstrom.headscale
+    - rarosalion.headscale
 ```
 
 ## Tags

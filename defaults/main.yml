@@ -12,12 +12,12 @@ headscale_allow_downgrade: false
 
 # The contents of the headscale config.yaml file.
 # expressed as a yaml object. 
-# will be converted using | to_nice_yaml for readability. 
+# will be converted using | to_nice_json for readability. 
 headscale_config: {}
 
-# The contents of the headscale acl.yaml file. 
+# The contents of the headscale acl.json file. 
 # expressed as a yaml object. 
-# will be converted using | to_nice_yaml for readability. 
+# will be converted using | to_nice_json for readability. 
 headscale_acl: {}
 
 # If set to true, any namespace not specified in headscale_namespaces will be permanently deleted.

@@ -17,10 +17,10 @@
     mode: 0660
   notify: restart service
 
-- name: Set headscale acl.yaml.
+- name: Set headscale acl.json.
   ansible.builtin.copy:
-    content: "{{ headscale_acl | to_nice_yaml(sort_keys=False) }}"
-    dest: "{{ headscale_etc_dir_path }}/acl.yaml"
+    content: "{{ headscale_acl | to_nice_json(sort_keys=False) }}"
+    dest: "{{ headscale_etc_dir_path }}/acl.json"
     owner: "{{ headscale_user_name }}"
     group: "{{ headscale_user_name }}"
     mode: 0660
