@@ -13,15 +13,15 @@
   block:
     - name: "Get headscale version by command."
       ansible.builtin.command:
-        "{{ headscale_binary_path }} version"
+        "{{ headscale_binary_path }} version -o json"
       register: headscale_version_output
       changed_when: false
       failed_when: headscale_version_output.rc != 0
 
     - name: "Set headscale_installed_version."
       ansible.builtin.set_fact:
-        headscale_installed_version: "{{ headscale_version_output.stdout | regex_replace('^v?(.*)$', '\\1') | trim }}"
-  
+        headscale_installed_version: "{{ (headscale_version_output.stdout|from_json).version | trim('v') }}"
+
   when: headscale_installed
 
 - block:
