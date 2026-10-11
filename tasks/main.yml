@@ -21,7 +21,7 @@
     file: upgrade.yml
   tags:
     - upgrade
-  when: headscale_upgrade_required
+  when: headscale_upgrade_required | bool
 
 - name: Configure headscale.
   ansible.builtin.include_tasks:
