@@ -2,17 +2,40 @@
 - name: Converge
   hosts: all
   vars:
-    headscale_version: 0.20.0
+    # Pinned rather than "latest" so the test doesn't depend on the GitHub API and stays reproducible.
+    headscale_version: 0.29.3
+    # Mirrors the shape of a real deployment's config (current key names; the old ip_prefixes and
+    # top-level private_key_path are rejected by recent headscale releases).
     headscale_config:
-      server_url: "http://127.0.01:8080"
+      server_url: "http://127.0.0.1:8080"
       listen_addr: 127.0.0.1:8080
+      metrics_listen_addr: 127.0.0.1:9090
+      grpc_listen_addr: 127.0.0.1:50443
       private_key_path: "{{ headscale_lib_dir_path }}/private.key"
-      db_type: sqlite3
-      unix_socket: "{{ headscale_run_dir_path }}/headscale.sock"
-      ip_prefixes:
-        - 100.64.0.0/10
       noise:
         private_key_path: "{{ headscale_lib_dir_path }}/noise_private.key"
+      prefixes:
+        v4: 100.64.0.0/10
+        v6: fd7a:115c:a1e0::/48
+      derp:
+        server:
+          enabled: false
+        urls:
+          - https://controlplane.tailscale.com/derpmap/default
+        paths: []
+      database:
+        type: sqlite3
+        sqlite:
+          path: "{{ headscale_lib_dir_path }}/db.sqlite"
+      unix_socket: "{{ headscale_run_dir_path }}/headscale.sock"
+      policy:
+        mode: database
+      dns:
+        magic_dns: true
+        base_domain: molecule.example.net
+        nameservers:
+          global:
+            - 1.1.1.1
 
   roles:
     - role: hampusstrom.headscale
