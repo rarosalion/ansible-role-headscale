@@ -20,6 +20,7 @@
     cmd: |
       uname
   changed_when: false
+  check_mode: false
   register: uname_result
 
 # base releases url/version tag/filename

@@ -15,6 +15,7 @@
       ansible.builtin.command:
         "{{ headscale_binary_path }} version -o json"
       register: headscale_version_output
+      check_mode: false
       changed_when: false
       failed_when: headscale_version_output.rc != 0
 
@@ -35,6 +36,7 @@
       force_basic_auth: "{{ headscale_github_api_auth | default (omit) }}"
       body_format: json
     register: github_release
+    check_mode: false
     until: github_release.status == 200
     retries: 5
 
